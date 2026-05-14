@@ -1,0 +1,1249 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lieux Périgord — Notation</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --bg: #f5f0e8;
+  --ink: #1a1510;
+  --sepia: #8b6f47;
+  --gold: #c9913a;
+  --gold-light: #e8c87a;
+  --stone: #d4c9b5;
+  --paper: #ede8dc;
+  --paper2: #e6e0d2;
+  --shadow: rgba(26,21,16,0.12);
+  --danger: #a03020;
+  --ecarte-bg: rgba(160,48,32,0.06);
+  --ecarte-border: rgba(160,48,32,0.18);
+}
+
+body {
+  background: var(--bg);
+  font-family: 'DM Mono', monospace;
+  color: var(--ink);
+  min-height: 100vh;
+  padding: 2rem 1rem 5rem;
+  background-image:
+    radial-gradient(ellipse at 20% 10%, rgba(201,145,58,0.08) 0%, transparent 60%),
+    radial-gradient(ellipse at 80% 90%, rgba(139,111,71,0.07) 0%, transparent 55%);
+}
+
+/* ── Header ── */
+header { text-align: center; margin-bottom: 2rem; }
+header h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(1.6rem, 4vw, 2.6rem);
+  font-weight: 700; letter-spacing: 0.02em; color: var(--ink); line-height: 1.1;
+}
+header h1 em { font-style: italic; color: var(--sepia); }
+header p { margin-top: 0.4rem; font-size: 0.7rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--sepia); opacity: 0.8; }
+.divider { width: 60px; height: 2px; background: linear-gradient(90deg, transparent, var(--gold), transparent); margin: 0.8rem auto; }
+
+
+/* ── Bloc séjour ── */
+.sejour-block {
+  max-width: 900px;
+  margin: 0 auto 1.2rem;
+  border: 1px solid var(--stone);
+  border-radius: 2px;
+  background: var(--paper);
+  box-shadow: 0 2px 12px var(--shadow);
+  overflow: hidden;
+}
+
+.sejour-toggle {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.7rem 1rem;
+  cursor: pointer;
+  user-select: none;
+  background: var(--paper);
+  transition: background 0.15s;
+}
+.sejour-toggle:hover { background: var(--paper2); }
+
+.sejour-toggle-label {
+  font-size: 0.62rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--sepia);
+  flex: 1;
+}
+
+.sejour-chevron {
+  font-size: 0.55rem;
+  color: var(--stone);
+  transition: transform 0.2s;
+}
+.sejour-block.open .sejour-chevron { transform: rotate(90deg); color: var(--gold); }
+
+.sejour-body {
+  display: none;
+  padding: 0.8rem 1rem 1rem;
+  border-top: 1px solid var(--stone);
+  background: var(--paper2);
+}
+.sejour-block.open .sejour-body { display: block; }
+
+.sejour-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 0.8rem 1.4rem;
+}
+
+.sejour-field { display: flex; flex-direction: column; gap: 3px; }
+
+.sejour-label {
+  font-size: 0.56rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--sepia);
+  opacity: 0.75;
+}
+
+.sejour-input {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.75rem;
+  color: var(--ink);
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid var(--stone);
+  outline: none;
+  padding: 3px 0;
+  width: 100%;
+  transition: border-color 0.2s;
+}
+.sejour-input:focus { border-bottom-color: var(--gold); }
+.sejour-input::placeholder { color: var(--stone); font-style: italic; }
+
+/* computed fields */
+.sejour-computed {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.75rem;
+  color: var(--ink);
+  padding: 3px 0;
+  border-bottom: 1px dashed var(--stone);
+  min-height: 1.4rem;
+}
+.sejour-computed.positive { color: #3a7a3a; }
+.sejour-computed.negative { color: var(--danger); }
+
+/* address link */
+.sejour-addr-link {
+  font-size: 0.62rem;
+  color: var(--gold);
+  text-decoration: none;
+  margin-top: 3px;
+  display: inline-block;
+  opacity: 0.8;
+  transition: opacity 0.15s;
+}
+.sejour-addr-link:hover { opacity: 1; text-decoration: underline; }
+
+@media (max-width: 640px) {
+  .sejour-grid { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 420px) {
+  .sejour-grid { grid-template-columns: 1fr; }
+}
+
+/* ── Toolbar ── */
+.toolbar {
+  max-width: 900px;
+  margin: 0 auto 1rem;
+  display: flex;
+  gap: 0.6rem;
+  flex-wrap: wrap;
+  align-items: center;
+}
+.search-wrap {
+  flex: 1;
+  min-width: 160px;
+  position: relative;
+}
+.search-wrap input {
+  width: 100%;
+  font-family: 'DM Mono', monospace;
+  font-size: 0.72rem;
+  padding: 0.45rem 0.8rem 0.45rem 2rem;
+  border: 1px solid var(--stone);
+  background: var(--paper);
+  color: var(--ink);
+  border-radius: 2px;
+  outline: none;
+  transition: border-color 0.2s;
+}
+.search-wrap input:focus { border-color: var(--gold); }
+.search-wrap input::placeholder { color: var(--stone); }
+.search-wrap::before { content: "⌕"; position: absolute; left: 0.6rem; top: 50%; transform: translateY(-50%); font-size: 0.9rem; color: var(--stone); pointer-events: none; }
+
+.sort-select {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.65rem;
+  letter-spacing: 0.08em;
+  padding: 0.45rem 0.7rem;
+  border: 1px solid var(--stone);
+  background: var(--paper);
+  color: var(--sepia);
+  border-radius: 2px;
+  outline: none;
+  cursor: pointer;
+}
+
+.pill {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.62rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 0.42rem 0.9rem;
+  border: 1px solid var(--stone);
+  background: transparent;
+  color: var(--sepia);
+  cursor: pointer;
+  border-radius: 30px;
+  transition: all 0.15s;
+  white-space: nowrap;
+}
+.pill:hover { border-color: var(--sepia); color: var(--ink); }
+.pill.on { background: var(--danger); border-color: var(--danger); color: #fff; }
+
+/* ── Table wrapper ── */
+.table-wrapper {
+  max-width: 900px;
+  margin: 0 auto;
+  background: var(--paper);
+  border: 1px solid var(--stone);
+  border-radius: 2px;
+  overflow: auto;
+  box-shadow: 0 4px 24px var(--shadow), 0 1px 0 rgba(255,255,255,0.6) inset;
+}
+table { width: 100%; border-collapse: collapse; }
+
+thead tr { background: var(--ink); }
+thead th {
+  padding: 0.85rem 1rem;
+  font-size: 0.62rem; font-weight: 400;
+  letter-spacing: 0.18em; text-transform: uppercase;
+  text-align: left; color: var(--gold-light);
+}
+thead th.col-note { text-align: center; width: 150px; }
+thead th.col-jour { width: 56px; text-align: center; }
+td.col-jour { padding: 0.6rem 0.4rem; text-align: center; }
+thead th.col-routard { width: 46px; text-align: center; padding: 0.85rem 0.4rem; }
+td.col-routard { padding: 0.6rem 0.4rem; }
+thead th.col-prix { width: 90px; text-align: right; }
+thead th.col-distance { width: 90px; text-align: right; }
+thead th.col-flags { width: 80px; text-align: center; }
+
+/* Main data row */
+tbody tr.main-row {
+  border-bottom: none;
+  transition: background 0.12s;
+  cursor: pointer;
+}
+tbody tr.main-row:hover { background: rgba(201,145,58,0.07); }
+tbody tr.main-row.ecarte { background: var(--ecarte-bg) !important; opacity: 0.6; }
+tbody tr.main-row.ecarte:hover { opacity: 0.8; }
+tbody tr.main-row.hidden-row { display: none; }
+
+td { padding: 0.6rem 1rem; vertical-align: middle; }
+
+/* Expand chevron */
+.expand-cell { width: 28px; padding: 0 0 0 0.8rem; }
+.chevron {
+  display: inline-block;
+  font-size: 0.6rem;
+  color: var(--stone);
+  transition: transform 0.2s, color 0.15s;
+  user-select: none;
+}
+tr.main-row:hover .chevron { color: var(--sepia); }
+tr.main-row.open .chevron { transform: rotate(90deg); color: var(--gold); }
+
+/* Lieu input */
+.lieu-input {
+  font-family: 'Playfair Display', serif;
+  font-size: 0.9rem; color: var(--ink);
+  background: transparent; border: none;
+  border-bottom: 1px dashed transparent;
+  outline: none; width: 100%; padding: 1px 0;
+  transition: border-color 0.2s;
+}
+.lieu-input:focus { border-bottom-color: var(--gold); }
+tr:hover .lieu-input { border-bottom-color: var(--stone); }
+
+/* Stars */
+.stars { display: flex; justify-content: center; gap: 2px; align-items: center; }
+.star { font-size: 1.05rem; cursor: pointer; user-select: none; line-height: 1; filter: grayscale(1) opacity(0.22); transition: transform 0.1s; }
+.star.active { filter: none; }
+.star:hover { transform: scale(1.2); }
+.reset-btn {
+  font-size: 0.5rem; color: var(--sepia); cursor: pointer; opacity: 0;
+  transition: opacity 0.2s; margin-left: 4px; padding: 2px 4px;
+  border: 1px solid var(--stone); border-radius: 2px;
+  background: transparent; font-family: 'DM Mono', monospace;
+}
+tr:hover .reset-btn { opacity: 0.4; }
+.reset-btn:hover { opacity: 1 !important; color: var(--ink); }
+
+/* Comment */
+.comment-input {
+  width: 100%; background: transparent; border: none;
+  border-bottom: 1px solid transparent;
+  font-family: 'DM Mono', monospace; font-size: 0.72rem; color: var(--ink);
+  padding: 2px 0; outline: none; transition: border-color 0.2s;
+}
+.comment-input::placeholder { color: var(--stone); font-style: italic; }
+.comment-input:focus { border-bottom-color: var(--gold); }
+
+/* Flag écarté */
+.flag-btn {
+  background: none; border: none; cursor: pointer;
+  font-size: 1rem; line-height: 1;
+  opacity: 0.2; transition: opacity 0.15s, transform 0.15s;
+  padding: 2px 4px;
+}
+.flag-btn:hover { opacity: 0.6; transform: scale(1.15); }
+.flag-btn.flagged { opacity: 1; }
+.flag-btn.retenu { opacity: 1; color: inherit; }
+
+/* Delete */
+.del-btn { display: none !important; }
+.del-btn-hidden {
+  background: none; border: none; cursor: pointer;
+  color: var(--stone); font-size: 0.8rem; padding: 2px 4px;
+  border-radius: 2px; transition: color 0.15s, background 0.15s;
+  opacity: 0; line-height: 1;
+}
+tr:hover .del-btn { display: none !important; }
+.del-btn-hidden { opacity: 1; }
+.del-btn:hover { color: var(--danger); background: rgba(160,48,32,0.08); }
+
+
+
+/* ── Sortable headers ── */
+thead th.sortable {
+  cursor: pointer;
+  user-select: none;
+  transition: background 0.15s;
+  padding-right: 1.4rem;
+  position: relative;
+}
+thead th.sortable:hover { background: #2a2418; }
+thead th.sortable::after {
+  content: '';
+  position: absolute;
+  right: 0.55rem;
+  top: 50%;
+  transform: translateY(-50%);
+  opacity: 0.25;
+  font-size: 0.6rem;
+  content: '⇅';
+}
+thead th.sortable.sort-asc::after  { content: '↑'; opacity: 1; color: var(--gold-light); }
+thead th.sortable.sort-desc::after { content: '↓'; opacity: 1; color: var(--gold-light); }
+
+/* ── Column resize ── */
+thead th { position: relative; }
+.resize-handle {
+  position: absolute;
+  right: 0; top: 0; bottom: 0;
+  width: 6px;
+  cursor: col-resize;
+  user-select: none;
+  z-index: 1;
+}
+.resize-handle:hover, .resize-handle.dragging {
+  background: rgba(201,145,58,0.35);
+}
+table { table-layout: fixed; }
+
+/* ── Detail row (progressive disclosure) ── */
+tbody tr.detail-row { display: none; border-bottom: 1px solid var(--stone); }
+tbody tr.detail-row.open { display: table-row; }
+tbody tr.detail-row td {
+  padding: 0 1rem 0.9rem 2.5rem;
+  background: var(--paper2);
+}
+tbody tr.detail-row.ecarte td { background: var(--ecarte-bg); }
+
+.detail-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 0.7rem 1.2rem;
+  padding-top: 0.6rem;
+  border-top: 1px dashed var(--stone);
+}
+
+.detail-field { display: flex; flex-direction: column; gap: 3px; }
+.detail-label {
+  font-size: 0.56rem; letter-spacing: 0.14em; text-transform: uppercase;
+  color: var(--sepia); opacity: 0.7;
+}
+.detail-input {
+  font-family: 'DM Mono', monospace; font-size: 0.73rem; color: var(--ink);
+  background: transparent; border: none;
+  border-bottom: 1px solid var(--stone);
+  outline: none; padding: 2px 0; width: 100%;
+  transition: border-color 0.2s;
+}
+.detail-input:focus { border-bottom-color: var(--gold); }
+.detail-input::placeholder { color: var(--stone); font-style: italic; font-size: 0.68rem; }
+
+.detail-input.url-input { color: var(--sepia); }
+.url-preview { font-size: 0.62rem; color: var(--sepia); opacity: 0.7; margin-top: 1px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.url-preview a { color: var(--gold); text-decoration: none; }
+.url-preview a:hover { text-decoration: underline; }
+
+/* Tags concurrent */
+.concurrent-wrap { display: flex; flex-wrap: wrap; gap: 4px; margin-top: 3px; }
+.concurrent-tag {
+  font-size: 0.6rem; letter-spacing: 0.06em;
+  padding: 1px 6px; border-radius: 30px;
+  background: rgba(139,111,71,0.12);
+  border: 1px solid var(--stone);
+  color: var(--sepia);
+}
+
+/* Add row */
+tfoot .add-row td { padding: 0.5rem 1rem; border-top: 1px dashed var(--stone); }
+.add-btn {
+  font-family: 'DM Mono', monospace; font-size: 0.62rem;
+  letter-spacing: 0.12em; text-transform: uppercase;
+  background: none; border: 1px dashed var(--stone);
+  color: var(--sepia); padding: 0.38rem 1rem;
+  cursor: pointer; border-radius: 2px; transition: all 0.15s;
+}
+.add-btn:hover { border-color: var(--gold); color: var(--ink); background: rgba(201,145,58,0.06); }
+
+/* ── Action bar ── */
+.actions {
+  max-width: 900px; margin: 1.2rem auto 0;
+  display: flex; align-items: center; gap: 0.7rem; flex-wrap: wrap;
+}
+.summary-bar { flex: 1; font-size: 0.63rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--sepia); }
+.btn {
+  font-family: 'DM Mono', monospace; font-size: 0.63rem;
+  letter-spacing: 0.14em; text-transform: uppercase;
+  padding: 0.5rem 1rem; border: 1px solid var(--sepia);
+  background: transparent; color: var(--sepia);
+  cursor: pointer; border-radius: 1px; transition: all 0.15s;
+}
+.btn:hover { background: var(--ink); color: var(--gold-light); border-color: var(--ink); }
+.btn.active { background: var(--ink); color: var(--gold-light); border-color: var(--ink); }
+.btn.active:hover { background: var(--sepia); border-color: var(--sepia); color: var(--bg); }
+
+/* csv panel removed */
+
+/* No results */
+.no-results { text-align: center; padding: 2rem; font-size: 0.72rem; color: var(--stone); font-style: italic; }
+
+@media (max-width: 640px) {
+  .detail-grid { grid-template-columns: 1fr 1fr; }
+  thead th.col-comment, tbody td.col-comment { display: none; }
+}
+@media (max-width: 420px) {
+  .detail-grid { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+
+<header>
+  <h1>Lieux du <em>Périgord</em></h1>
+  <div class="divider"></div>
+  <p>Notation personnelle — Voyage</p>
+</header>
+
+
+<div class="sejour-block" id="sejour-block">
+  <div class="sejour-toggle" onclick="toggleSejour()">
+    <span class="sejour-chevron">▶</span>
+    <span class="sejour-toggle-label">Infos du séjour</span>
+  </div>
+  <div class="sejour-body">
+    <div class="sejour-grid">
+
+      <div class="sejour-field">
+        <span class="sejour-label">Budget quotidien</span>
+        <input class="sejour-input" id="sej-budget-jour" type="text" placeholder="ex : 80 €" oninput="saveSejour(); updateBudget()">
+      </div>
+
+      <div class="sejour-field">
+        <span class="sejour-label">Nombre de jours</span>
+        <input class="sejour-input" id="sej-nb-jours" type="number" min="1" placeholder="ex : 7" oninput="saveSejour(); updateBudget()">
+      </div>
+
+      <div class="sejour-field">
+        <span class="sejour-label">Budget total</span>
+        <div class="sejour-computed" id="sej-budget-total">—</div>
+      </div>
+
+      <div class="sejour-field">
+        <span class="sejour-label">Dépense totale</span>
+        <input class="sejour-input" id="sej-depense" type="text" placeholder="ex : 320 €" oninput="saveSejour(); updateBudget()">
+      </div>
+
+      <div class="sejour-field">
+        <span class="sejour-label">Reste / Dépassement</span>
+        <div class="sejour-computed" id="sej-reste">—</div>
+      </div>
+
+      <div class="sejour-field">
+        <span class="sejour-label">Hébergement</span>
+        <input class="sejour-input" id="sej-hebergement" type="text" placeholder="Nom ou adresse" oninput="saveSejour(); updateAddrLink()" value="">
+        <input type="hidden" id="sej-adresse" value="">
+        <a class="sejour-addr-link" id="sej-addr-link" href="#" target="_blank" rel="noopener" style="display:none">↗ Ouvrir dans Maps</a>
+      </div>
+
+
+    <div style="margin-top:1.2rem; border-top:1px dashed var(--stone); padding-top:1rem;">
+      <div class="sejour-label" style="margin-bottom:0.5rem;">Planning</div>
+      <div id="sej-lieux-list" style="font-size:0.72rem; color:var(--ink); line-height:1.9; font-family:'DM Mono',monospace;">—</div>
+    </div>
+    </div>
+  </div>
+</div>
+
+<div class="toolbar">
+  <div class="search-wrap">
+    <input type="text" id="search-input" placeholder="Chercher un lieu, commentaire…" oninput="applyFilters()">
+  </div>
+  <button class="pill" id="filter-retenu-btn" onclick="toggleFilterRetenu()">📍 Retenus seulement</button>
+  <button class="pill" id="filter-ecarte-btn" onclick="toggleFilterEcarte()">👎 Masquer écartés</button>
+</div>
+
+<div class="table-wrapper">
+  <table>
+    <thead>
+      <tr>
+        <th style="width:28px; padding:0 0 0 0.8rem;"></th>
+        <th class="col-routard sortable" data-sort="routard" onclick="handleSortClick(this)" title="Page du Routard">🌍</th>
+        <th class="sortable" data-sort="alpha" onclick="handleSortClick(this)">Lieu</th>
+        <th class="col-note sortable" data-sort="stars" onclick="handleSortClick(this)">Note</th>
+        <th class="col-jour sortable" data-sort="jour" onclick="handleSortClick(this)">Jour</th>
+        <th class="col-distance sortable" data-sort="distance" onclick="handleSortClick(this)">Distance</th>
+        <th class="col-prix sortable" data-sort="prix" onclick="handleSortClick(this)">Prix</th>
+        <th class="col-flags">📍 👎</th>
+      </tr>
+    </thead>
+    <tbody id="tbody"></tbody>
+    <tfoot>
+      <tr class="add-row">
+        <td colspan="8">
+          <button class="add-btn" onclick="addRow()">＋ Ajouter un lieu</button>
+        </td>
+      </tr>
+    </tfoot>
+  </table>
+  <div class="no-results" id="no-results" style="display:none">Aucun lieu trouvé.</div>
+</div>
+
+<div class="actions">
+  <span class="summary-bar" id="summary"></span>
+  <button class="btn" id="copy-all-btn" onclick="copyAllJSON(this)" title="Copier le JSON">⎘</button>
+  <button class="btn" id="import-json-btn" onclick="importFromClipboard(this)" title="Importer depuis le presse-papier">⬆ Import</button>
+</div>
+
+
+<script>
+const STATE_KEY = "perigord_v8";
+
+const DEFAULT_DATA = [];
+
+function loadState() {
+  try {
+    const s = JSON.parse(localStorage.getItem(STATE_KEY));
+    if (s && Array.isArray(s.lieux)) return s;
+    return null;
+  } catch { return null; }
+}
+function saveState() {
+  localStorage.setItem(STATE_KEY, JSON.stringify({ lieux: rows, notes: notes }));
+}
+
+// Migrate old state keys
+function migrateOldState() {
+  for (const key of ["perigord_v6","perigord_v5","perigord_v4","perigord_ratings_v3","perigord_ratings_v2"]) {
+    try {
+      const old = JSON.parse(localStorage.getItem(key));
+      if (Array.isArray(old) && old.length) {
+        return { lieux: old.map(r => ({ lieu:r.lieu||"", rating:r.rating||0, comment:r.comment||"", prix:r.prix||"", site:r.site||"", concurrent:r.concurrent||"", distance:r.distance||"", routard:r.routard||"", ecarte:!!r.ecarte, retenu:!!r.retenu })), notes: {} };
+      }
+    } catch {}
+  }
+  return null;
+}
+
+const _state = loadState() || migrateOldState() || { lieux: DEFAULT_DATA.map(d => ({...d})), notes: {} };
+let rows = _state.lieux;
+let notes = _state.notes || {};
+let filterEcarte = false;
+let filterRetenu = false;
+
+// ── Ensure all rows have new fields ──
+rows = rows.map(r => ({ prix:"", site:"", concurrent:"", distance:"", routard:"", jour:"", ecarte:false, retenu:false, ...r }));
+
+// ── View state ──
+const SORT_KEY = "perigord_sort";
+
+// ── Sort state ──
+let currentSort = (() => {
+  try { return JSON.parse(localStorage.getItem(SORT_KEY)) || { key: null, dir: "asc" }; }
+  catch { return { key: null, dir: "asc" }; }
+})();
+
+function saveSort(v) { localStorage.setItem(SORT_KEY, JSON.stringify(v)); }
+
+function handleSortClick(th) {
+  const key = th.dataset.sort;
+  if (currentSort.key === key) {
+    currentSort.dir = currentSort.dir === "asc" ? "desc" : "asc";
+  } else {
+    currentSort = { key, dir: "asc" };
+  }
+  saveSort(currentSort);
+  updateSortHeaders();
+  applyFilters();
+}
+
+function updateSortHeaders() {
+  document.querySelectorAll("thead th.sortable").forEach(th => {
+    th.classList.remove("sort-asc", "sort-desc");
+    if (th.dataset.sort === currentSort.key) {
+      th.classList.add(currentSort.dir === "asc" ? "sort-asc" : "sort-desc");
+    }
+  });
+}
+
+
+function getVisibleIndices() {
+  const search = document.getElementById("search-input").value.trim().toLowerCase();
+
+  let indices = rows.map((r, i) => i);
+
+  // Filter search
+  if (search) {
+    indices = indices.filter(i => {
+      const r = rows[i];
+      return [r.lieu, r.comment, r.prix, r.site, r.concurrent, r.distance]
+        .some(v => v && v.toLowerCase().includes(search));
+    });
+  }
+
+  // Filter écarté
+  if (filterEcarte) {
+    indices = indices.filter(i => !rows[i].ecarte);
+  }
+
+  // Filter retenus seulement
+  if (filterRetenu) {
+    indices = indices.filter(i => rows[i].retenu);
+  }
+
+  // Sort
+  if (!currentSort.key) { /* original order */ }
+  else if (currentSort.key === "alpha") {
+    if (currentSort.dir === "asc") indices.sort((a,b) => rows[a].lieu.localeCompare(rows[b].lieu, "fr"));
+    else indices.sort((a,b) => rows[b].lieu.localeCompare(rows[a].lieu, "fr"));
+  }
+  else if (currentSort.key === "stars") {
+    if (currentSort.dir === "asc") indices.sort((a,b) => rows[a].rating - rows[b].rating);
+    else indices.sort((a,b) => rows[b].rating - rows[a].rating);
+  }
+  else if (currentSort.key === "distance") {
+    const parseNum = s => parseFloat((s||"").replace(/[^0-9.,]/g,"").replace(",",".")) || Infinity;
+    if (currentSort.dir === "asc") indices.sort((a,b) => parseNum(rows[a].distance) - parseNum(rows[b].distance));
+    else indices.sort((a,b) => parseNum(rows[b].distance) - parseNum(rows[a].distance));
+  }
+  else if (currentSort.key === "routard") {
+    const parseP = s => parseInt((s||"").replace(/[^0-9]/g,"")) || Infinity;
+    if (currentSort.dir === "asc") indices.sort((a,b) => parseP(rows[a].routard) - parseP(rows[b].routard));
+    else indices.sort((a,b) => parseP(rows[b].routard) - parseP(rows[a].routard));
+  }
+  else if (currentSort.key === "prix") {
+    const parseNum = s => parseFloat((s||"").replace(/[^0-9.,]/g,"").replace(",",".")) || Infinity;
+    if (currentSort.dir === "asc") indices.sort((a,b) => parseNum(rows[a].prix) - parseNum(rows[b].prix));
+    else indices.sort((a,b) => parseNum(rows[b].prix) - parseNum(rows[a].prix));
+  }
+  else if (currentSort.key === "jour") {
+    const parseJ = s => parseInt((s||"").replace(/[^0-9]/g,"")) || Infinity;
+    if (currentSort.dir === "asc") indices.sort((a,b) => parseJ(rows[a].jour) - parseJ(rows[b].jour));
+    else indices.sort((a,b) => parseJ(rows[b].jour) - parseJ(rows[a].jour));
+  }
+
+  return indices;
+}
+
+// ── Build table ──
+function buildTable() {
+  const tbody = document.getElementById("tbody");
+  tbody.innerHTML = "";
+  rows.forEach((row, i) => {
+    const [mainTr, detailTr] = renderRowPair(row, i);
+    tbody.appendChild(mainTr);
+    tbody.appendChild(detailTr);
+  });
+  applyFilters();
+  updateSummary();
+  if (typeof initResize === 'function') initResize();
+  updateSejourLieux();
+}
+
+function applyFilters() {
+  const orderedIndices = getVisibleIndices();
+  const visibleSet = new Set(orderedIndices);
+  const tbody = document.getElementById("tbody");
+
+  // Reorder rows in DOM according to sort order
+  orderedIndices.forEach(i => {
+    const mainTr = tbody.querySelector(`tr.main-row[data-idx="${i}"]`);
+    const detTr = document.getElementById(`detail-${i}`);
+    if (mainTr) tbody.appendChild(mainTr);
+    if (detTr) tbody.appendChild(detTr);
+  });
+
+  // Show/hide all rows
+  const allMainRows = document.querySelectorAll("tr.main-row");
+  allMainRows.forEach(tr => {
+    const i = parseInt(tr.dataset.idx);
+    const show = visibleSet.has(i);
+    tr.classList.toggle("hidden-row", !show);
+    const det = document.getElementById(`detail-${i}`);
+    if (det) det.style.display = show ? "" : "none";
+  });
+
+  const visibleCount = orderedIndices.length;
+  document.getElementById("no-results").style.display = visibleCount === 0 ? "block" : "none";
+  updateSummary();
+  updateSejourLieux();
+}
+
+function renderRowPair(row, i) {
+  // ── Main row ──
+  const tr = document.createElement("tr");
+  tr.className = "main-row" + (row.ecarte ? " écarté" : "");
+  tr.dataset.idx = i;
+
+  // Chevron
+  const tdChev = document.createElement("td");
+  tdChev.className = "expand-cell";
+  const chev = document.createElement("span");
+  chev.className = "chevron";
+  chev.textContent = "▶";
+  tdChev.appendChild(chev);
+
+  // Lieu
+  const tdL = document.createElement("td");
+  const lieuInput = document.createElement("input");
+  lieuInput.className = "lieu-input";
+  lieuInput.value = row.lieu;
+  lieuInput.placeholder = "Nom du lieu";
+  lieuInput.addEventListener("click", e => e.stopPropagation());
+  lieuInput.addEventListener("input", e => { rows[i].lieu = e.target.value; saveState(); syncCSV(); });
+  tdL.appendChild(lieuInput);
+
+  // Stars
+  const tdS = document.createElement("td");
+  const starsDiv = document.createElement("div");
+  starsDiv.className = "stars";
+  for (let v = 1; v <= 5; v++) {
+    const s = document.createElement("span");
+    s.className = "star" + (row.rating >= v ? " active" : "");
+    s.textContent = "⭐";
+    s.addEventListener("click", e => {
+      e.stopPropagation();
+      rows[i].rating = rows[i].rating === v ? 0 : v;
+      saveState(); syncCSV();
+      refreshStars(starsDiv, rows[i].rating);
+      updateSummary();
+    });
+    starsDiv.appendChild(s);
+  }
+  const resetBtn = document.createElement("button");
+  resetBtn.className = "reset-btn"; resetBtn.textContent = "✕";
+  resetBtn.addEventListener("click", e => {
+    e.stopPropagation();
+    rows[i].rating = 0; saveState(); syncCSV();
+    refreshStars(starsDiv, 0); updateSummary();
+  });
+  starsDiv.appendChild(resetBtn);
+  tdS.appendChild(starsDiv);
+
+  // Distance
+  const tdDist = document.createElement("td");
+  tdDist.className = "col-distance";
+  tdDist.style.textAlign = "right";
+  const distInput = document.createElement("input");
+  distInput.className = "comment-input";
+  distInput.style.textAlign = "right";
+  distInput.type = "text"; distInput.placeholder = "ex : 12 km";
+  distInput.value = row.distance;
+  distInput.addEventListener("click", e => e.stopPropagation());
+  distInput.addEventListener("input", e => { rows[i].distance = e.target.value; saveState(); syncCSV(); });
+  tdDist.appendChild(distInput);
+
+  // Prix (main row)
+  const tdPrix = document.createElement("td");
+  tdPrix.className = "col-prix";
+  tdPrix.style.textAlign = "right";
+  const prixInput = document.createElement("input");
+  prixInput.className = "comment-input";
+  prixInput.style.textAlign = "right";
+  prixInput.type = "text"; prixInput.placeholder = "ex : 12 €";
+  prixInput.value = row.prix;
+  prixInput.addEventListener("click", e => e.stopPropagation());
+  prixInput.addEventListener("input", e => { rows[i].prix = e.target.value; saveState(); syncCSV(); });
+  tdPrix.appendChild(prixInput);
+
+  // Routard page
+  const tdR = document.createElement("td");
+  tdR.className = "col-routard";
+  tdR.style.textAlign = "center";
+  const routardInput = document.createElement("input");
+  routardInput.className = "comment-input";
+  routardInput.style.textAlign = "center";
+  routardInput.style.fontSize = "0.74rem";
+  routardInput.type = "text";
+  routardInput.placeholder = "—";
+  routardInput.value = row.routard;
+  routardInput.addEventListener("click", e => e.stopPropagation());
+  routardInput.addEventListener("input", e => { rows[i].routard = e.target.value; saveState(); syncCSV(); });
+  tdR.appendChild(routardInput);
+
+  // Jour
+  const tdJour = document.createElement("td");
+  tdJour.className = "col-jour";
+  const jourInput = document.createElement("input");
+  jourInput.className = "comment-input";
+  jourInput.style.textAlign = "center";
+  jourInput.style.fontSize = "0.74rem";
+  jourInput.type = "text";
+  jourInput.placeholder = "—";
+  jourInput.value = row.jour;
+  jourInput.addEventListener("click", e => e.stopPropagation());
+  jourInput.addEventListener("input", e => { rows[i].jour = e.target.value; saveState(); syncCSV(); });
+  tdJour.appendChild(jourInput);
+
+  // Flags: 📍 retenu + 👎 écarté
+  const tdF = document.createElement("td");
+  tdF.style.textAlign = "center";
+  tdF.style.whiteSpace = "nowrap";
+
+  // 📍 On y va
+  const retenuBtn = document.createElement("button");
+  retenuBtn.className = "flag-btn" + (row.retenu ? " flagged retenu" : "");
+  retenuBtn.title = row.retenu ? "Retirer l\'épingle" : "On y va !";
+  retenuBtn.textContent = "📍";
+  retenuBtn.addEventListener("click", e => {
+    e.stopPropagation();
+    rows[i].retenu = !rows[i].retenu;
+    if (rows[i].retenu) rows[i].ecarte = false; // mutually exclusive
+    retenuBtn.classList.toggle("flagged", rows[i].retenu);
+    retenuBtn.classList.toggle("retenu", rows[i].retenu);
+    retenuBtn.title = rows[i].retenu ? "Retirer l\'épingle" : "On y va !";
+    flagBtn.classList.toggle("flagged", rows[i].ecarte);
+    tr.classList.toggle("ecarte", rows[i].ecarte);
+    const det = document.getElementById(`detail-${i}`);
+    if (det) det.classList.toggle("ecarte", rows[i].ecarte);
+    saveState(); syncCSV(); applyFilters();
+  });
+
+  // 👎 Écarté
+  const flagBtn = document.createElement("button");
+  flagBtn.className = "flag-btn" + (row.ecarte ? " flagged" : "");
+  flagBtn.title = row.ecarte ? "Remettre en jeu" : "Écarter ce lieu";
+  flagBtn.textContent = "👎";
+  flagBtn.addEventListener("click", e => {
+    e.stopPropagation();
+    rows[i].ecarte = !rows[i].ecarte;
+    if (rows[i].ecarte) rows[i].retenu = false; // mutually exclusive
+    flagBtn.classList.toggle("flagged", rows[i].ecarte);
+    flagBtn.title = rows[i].ecarte ? "Remettre en jeu" : "Écarter ce lieu";
+    retenuBtn.classList.toggle("flagged", rows[i].retenu);
+    retenuBtn.classList.toggle("retenu", rows[i].retenu);
+    tr.classList.toggle("ecarte", rows[i].ecarte);
+    const det = document.getElementById(`detail-${i}`);
+    if (det) det.classList.toggle("ecarte", rows[i].ecarte);
+    saveState(); syncCSV(); applyFilters();
+  });
+
+  tdF.appendChild(retenuBtn);
+  tdF.appendChild(flagBtn);
+
+  // Delete
+  const tdD = document.createElement("td");
+  tdD.className = "col-del";
+  tdD.style.textAlign = "center";
+  const delBtn = document.createElement("button");
+  delBtn.className = "del-btn"; delBtn.title = "Supprimer"; delBtn.textContent = "✕";
+  delBtn.addEventListener("click", e => {
+    e.stopPropagation();
+    if (confirm(`Supprimer « ${rows[i].lieu || "ce lieu"} » ?`)) {
+      rows.splice(i, 1); saveState(); syncCSV(); buildTable();
+    }
+  });
+  tdD.appendChild(delBtn);
+
+  tr.appendChild(tdChev); tr.appendChild(tdR); tr.appendChild(tdL); tr.appendChild(tdS);
+  tr.appendChild(tdJour); tr.appendChild(tdDist); tr.appendChild(tdPrix); tr.appendChild(tdF);
+
+  // ── Detail row ── (declared before click listener)
+  const detTr = document.createElement("tr");
+
+  // Click to expand
+  tr.addEventListener("click", () => toggleDetail(i, tr, detTr, chev));
+  detTr.className = "detail-row" + (row.ecarte ? " écarté" : "");
+  detTr.id = `detail-${i}`;
+
+  const detTd = document.createElement("td");
+  detTd.colSpan = 8;
+
+  const grid = document.createElement("div");
+  grid.className = "detail-grid";
+
+  // Commentaire (moved to detail)
+  grid.appendChild(makeDetailField("Commentaire", "notes, impressions…", row.comment, "text", val => { rows[i].comment = val; saveState(); syncCSV(); }));
+
+  // Site web
+  const siteField = makeSiteField(row.site, val => { rows[i].site = val; saveState(); syncCSV(); });
+  grid.appendChild(siteField);
+
+  // Concurrent
+  grid.appendChild(makeDetailField("Concurrent(s)", "ex : Castelnaud, Biron", row.concurrent, "text", val => { rows[i].concurrent = val; saveState(); syncCSV(); updateConcurrentTags(grid, val); }));
+
+  detTd.appendChild(grid);
+  detTr.appendChild(detTd);
+
+  return [tr, detTr];
+}
+
+function makeDetailField(label, placeholder, value, type, onChange) {
+  const wrap = document.createElement("div");
+  wrap.className = "detail-field";
+  const lbl = document.createElement("span");
+  lbl.className = "detail-label"; lbl.textContent = label;
+  const inp = document.createElement("input");
+  inp.className = "detail-input"; inp.type = type;
+  inp.placeholder = placeholder; inp.value = value;
+  inp.addEventListener("click", e => e.stopPropagation());
+  inp.addEventListener("input", e => onChange(e.target.value));
+  wrap.appendChild(lbl); wrap.appendChild(inp);
+  return wrap;
+}
+
+function makeSiteField(value, onChange) {
+  const wrap = document.createElement("div");
+  wrap.className = "detail-field";
+  const lbl = document.createElement("span");
+  lbl.className = "detail-label"; lbl.textContent = "Site web";
+  const inp = document.createElement("input");
+  inp.className = "detail-input url-input"; inp.type = "url";
+  inp.placeholder = "https://…"; inp.value = value;
+  const preview = document.createElement("div");
+  preview.className = "url-preview";
+  updateUrlPreview(preview, value);
+  inp.addEventListener("click", e => e.stopPropagation());
+  inp.addEventListener("input", e => { onChange(e.target.value); updateUrlPreview(preview, e.target.value); });
+  wrap.appendChild(lbl); wrap.appendChild(inp); wrap.appendChild(preview);
+  return wrap;
+}
+
+function updateUrlPreview(el, url) {
+  if (!url) { el.textContent = ""; return; }
+  try {
+    const u = new URL(url.startsWith("http") ? url : "https://" + url);
+    el.innerHTML = `<a href="${u.href}" target="_blank" rel="noopener">↗ ${u.hostname}</a>`;
+  } catch { el.textContent = ""; }
+}
+
+function updateConcurrentTags(grid, val) {
+  // Tags are visual only in this version — no separate element needed beyond input
+}
+
+function toggleDetail(i, mainTr, detTr, chev) {
+  const isOpen = detTr.classList.contains("open");
+  detTr.classList.toggle("open", !isOpen);
+  mainTr.classList.toggle("open", !isOpen);
+}
+
+function refreshStars(div, rating) {
+  div.querySelectorAll(".star").forEach((s, i) => s.classList.toggle("active", i < rating));
+}
+
+function updateSummary() {
+  const total = rows.length;
+  const rated = rows.filter(r => r.rating > 0).length;
+  const écartéCount = rows.filter(r => r.ecarte).length;
+  let s = `${rated} / ${total} notés`;
+  if (écartéCount) s += ` · ${écartéCount} écarté${écartéCount > 1 ? "s" : ""}`;
+  const search = document.getElementById("search-input").value.trim();
+  const visCount = getVisibleIndices().length;
+  if (search || filterEcarte || filterRetenu) s += ` · ${visCount} affiché${visCount > 1 ? "s" : ""}`;
+  document.getElementById("summary").textContent = s;
+}
+
+function addRow() {
+  // Reset filters so the new row is visible
+  if (filterRetenu) {
+    filterRetenu = false;
+    const btn = document.getElementById("filter-retenu-btn");
+    btn.classList.remove("on");
+    btn.textContent = "📍 Retenus seulement";
+  }
+  if (filterEcarte) {
+    filterEcarte = false;
+    const btn = document.getElementById("filter-ecarte-btn");
+    btn.classList.remove("on");
+    btn.textContent = "👎 Masquer écartés";
+  }
+  // Reset search too
+  document.getElementById("search-input").value = "";
+
+  rows.push({ lieu:"", rating:0, comment:"", prix:"", site:"", concurrent:"", distance:"", routard:"", jour:"", ecarte:false, retenu:false });
+  saveState(); syncCSV(); buildTable();
+  setTimeout(() => {
+    const inputs = document.querySelectorAll(".lieu-input");
+    inputs[inputs.length - 1]?.focus();
+  }, 50);
+}
+
+function resetAll() {
+  if (!confirm("Effacer toutes les données et revenir aux lieux d'origine ?")) return;
+  rows = DEFAULT_DATA.map(d => ({...d}));
+  saveState(); syncCSV(); buildTable();
+}
+
+function toggleFilterRetenu() {
+  filterRetenu = !filterRetenu;
+  if (filterRetenu) filterEcarte = false; // mutually exclusive with "masquer écartés"
+  const btn = document.getElementById("filter-retenu-btn");
+  const ecarteBtn = document.getElementById("filter-ecarte-btn");
+  btn.classList.toggle("on", filterRetenu);
+  btn.textContent = filterRetenu ? "📍 Tous les lieux" : "📍 Retenus seulement";
+  ecarteBtn.classList.toggle("on", false);
+  ecarteBtn.textContent = "👎 Masquer écartés";
+  applyFilters();
+}
+
+function toggleFilterEcarte() {
+  filterEcarte = !filterEcarte;
+  const btn = document.getElementById("filter-ecarte-btn");
+  btn.classList.toggle("on", filterEcarte);
+  btn.textContent = filterEcarte ? "👎 Afficher tous" : "👎 Masquer écartés";
+  applyFilters();
+}
+
+// ── JSON panel ──
+
+function fullJSON() {
+  return JSON.stringify({ lieux: rows, notes }, null, 2);
+}
+
+function syncCSV() { /* no-op: panel removed */ }
+
+function copyAllJSON(btn) {
+  const text = fullJSON();
+  navigator.clipboard.writeText(text).catch(() => {
+    const ta = document.createElement("textarea");
+    ta.value = text; document.body.appendChild(ta); ta.select();
+    document.execCommand("copy"); document.body.removeChild(ta);
+  });
+  const prev = btn.textContent;
+  btn.textContent = "✓";
+  setTimeout(() => btn.textContent = prev, 1500);
+}
+
+function importFromClipboard(btn) {
+  navigator.clipboard.readText().then(text => {
+    try {
+      const parsed = JSON.parse(text);
+      const lieux = Array.isArray(parsed) ? parsed : (parsed.lieux || []);
+      const imported = lieux
+        .filter(r => r && r.lieu)
+        .map(r => ({ prix:"", site:"", concurrent:"", distance:"", routard:"", jour:"", ecarte:false, retenu:false, ...r }));
+      if (!imported.length) { alert("Aucun lieu valide dans le presse-papier."); return; }
+      if (!confirm(`Remplacer les données par ${imported.length} lieux importés ?`)) return;
+      rows = imported;
+      if (!Array.isArray(parsed) && parsed.notes && typeof parsed.notes === "object") notes = parsed.notes;
+      saveState(); buildTable();
+      btn.textContent = "✓ Importé !";
+      setTimeout(() => btn.textContent = "⬆ Import", 1800);
+    } catch(e) { alert("JSON invalide dans le presse-papier : " + e.message); }
+  }).catch(() => alert("Impossible de lire le presse-papier. Autorisez l'accès dans votre navigateur."));
+}
+
+// ── Column resize (not persisted) ──
+function initResize() {
+  document.querySelectorAll("thead th").forEach(th => {
+    if (th.querySelector(".resize-handle")) return;
+    if (th.classList.contains("col-flags") || th.classList.contains("col-del") || th.classList.contains("col-routard")) return;
+    const handle = document.createElement("div");
+    handle.className = "resize-handle";
+    th.appendChild(handle);
+    let startX, startW;
+    handle.addEventListener("mousedown", e => {
+      e.preventDefault();
+      e.stopPropagation();
+      startX = e.clientX;
+      startW = th.offsetWidth;
+      handle.classList.add("dragging");
+      const onMove = e => {
+        const w = Math.max(40, startW + e.clientX - startX);
+        th.style.width = w + "px";
+        th.style.minWidth = w + "px";
+      };
+      const onUp = () => {
+        handle.classList.remove("dragging");
+        document.removeEventListener("mousemove", onMove);
+        document.removeEventListener("mouseup", onUp);
+      };
+      document.addEventListener("mousemove", onMove);
+      document.addEventListener("mouseup", onUp);
+    });
+  });
+}
+
+
+// ── Séjour ──
+function saveSejour() {
+  notes.budgetJour   = document.getElementById("sej-budget-jour").value;
+  notes.nbJours      = document.getElementById("sej-nb-jours").value;
+  notes.depense      = document.getElementById("sej-depense").value;
+  notes.hebergement  = document.getElementById("sej-hebergement").value;
+  notes._sejourOpen  = document.getElementById("sejour-block").classList.contains("open");
+  saveState();
+}
+
+function initSejour() {
+  const s = notes;
+  if (s.budgetJour)  document.getElementById("sej-budget-jour").value = s.budgetJour;
+  if (s.nbJours)     document.getElementById("sej-nb-jours").value    = s.nbJours;
+  if (s.depense)     document.getElementById("sej-depense").value      = s.depense;
+  if (s.hebergement) document.getElementById("sej-hebergement").value  = s.hebergement;
+  else               document.getElementById("sej-hebergement").value  = "Logis Hôtel le Boudoir, 15 Rue Jacques Manchotte, 24170 Pays de Belvès";
+  if (s._sejourOpen) document.getElementById("sejour-block").classList.add("open");
+  updateBudget();
+  updateAddrLink();
+  updateSejourLieux();
+}
+
+function toggleSejour() {
+  document.getElementById("sejour-block").classList.toggle("open");
+  saveSejour();
+}
+
+function parseAmount(s) {
+  if (!s) return null;
+  const n = parseFloat(s.replace(/[^0-9.,]/g,"").replace(",","."));
+  return isNaN(n) ? null : n;
+}
+
+function updateBudget() {
+  const jour = parseAmount(document.getElementById("sej-budget-jour").value);
+  const nb   = parseFloat(document.getElementById("sej-nb-jours").value) || null;
+  const dep  = parseAmount(document.getElementById("sej-depense").value);
+
+  const totalEl  = document.getElementById("sej-budget-total");
+  const resteEl  = document.getElementById("sej-reste");
+
+  const total = (jour && nb) ? jour * nb : null;
+  totalEl.textContent = total !== null ? total.toFixed(2) + " €" : "—";
+
+  if (total !== null && dep !== null) {
+    const reste = total - dep;
+    resteEl.textContent = (reste >= 0 ? "+" : "") + reste.toFixed(2) + " €";
+    resteEl.className = "sejour-computed " + (reste >= 0 ? "positive" : "negative");
+  } else {
+    resteEl.textContent = "—";
+    resteEl.className = "sejour-computed";
+  }
+}
+
+function updateAddrLink() {
+  // Use the single visible input as the address source
+  const addr = (document.getElementById("sej-hebergement").value || "").trim();
+  const link = document.getElementById("sej-addr-link");
+  if (!addr) { link.style.display = "none"; return; }
+  link.style.display = "";
+
+  // On mobile, prefer native app via geo: URI (opens Waze/Maps/Plans picker)
+  // On desktop, fallback to Google Maps web
+  const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+  if (isMobile) {
+    // iOS: maps:// triggers Apple Plans / Maps picker
+    // Android: geo: triggers app chooser (Maps, Waze, etc.)
+    const isIOS = /iPhone|iPad|iPod/i.test(navigator.userAgent);
+    if (isIOS) {
+      // https triggers iOS app picker (Maps, Waze, Google Maps...)
+      link.href = "https://maps.apple.com/?q=" + encodeURIComponent(addr);
+    } else {
+      link.href = "geo:0,0?q=" + encodeURIComponent(addr);
+    }
+  } else {
+    link.href = "https://www.google.com/maps/search/?api=1&query=" + encodeURIComponent(addr);
+  }
+}
+
+function updateSejourLieux() {
+  const el = document.getElementById("sej-lieux-list");
+  if (!el) return;
+  const retenus = rows.filter(r => r.retenu);
+  if (!retenus.length) {
+    el.textContent = "Aucun lieu épinglé.";
+    return;
+  }
+  const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+  const isIOS = /iPhone|iPad|iPod/i.test(navigator.userAgent);
+  function mapsUrl(lieu) {
+    const q = encodeURIComponent(lieu);
+    if (isMobile) return isIOS ? `maps://?q=${q}` : `geo:0,0?q=${q}`;
+    return `https://www.google.com/maps/search/?api=1&query=${q}`;
+  }
+  // Sort by jour (numeric), no-jour goes last
+  const parseJ = s => parseInt((s||"").replace(/[^0-9]/g,""));
+  const sorted = [...retenus].sort((a, b) => {
+    const ja = parseJ(a.jour), jb = parseJ(b.jour);
+    if (isNaN(ja) && isNaN(jb)) return 0;
+    if (isNaN(ja)) return 1;
+    if (isNaN(jb)) return -1;
+    return ja - jb;
+  });
+
+  // Group by jour
+  const groups = {};
+  sorted.forEach(r => {
+    const key = r.jour && r.jour.trim() ? r.jour.trim() : "—";
+    if (!groups[key]) groups[key] = [];
+    groups[key].push(r);
+  });
+
+  el.innerHTML = Object.entries(groups).map(([jour, lieux]) => {
+    const header = `<div style="font-size:0.6rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--sepia);margin-top:0.6rem;margin-bottom:0.2rem;opacity:0.7">${jour}</div>`;
+    const items = lieux.map(r => {
+      const dist = r.distance ? ` <span style="color:var(--stone)">${r.distance}</span>` : "";
+      const prix = r.prix ? ` · <span style="color:var(--stone)">${r.prix}</span>` : "";
+      const mapLink = `<a href="${mapsUrl(r.lieu)}" target="_blank" rel="noopener" style="color:var(--gold);text-decoration:none;font-size:0.65rem;margin-left:3px;opacity:0.6" title="Ouvrir dans Maps">↗</a>`;
+      return `<div style="display:flex;gap:0.4rem;align-items:baseline;padding-left:0.5rem">
+        <span style="color:var(--ink)">${r.lieu}</span>${mapLink}${dist}${prix}
+      </div>`;
+    }).join("");
+    return header + items;
+  }).join("");
+}
+
+saveState(); // persist on first load
+buildTable();
+updateSortHeaders();
+initResize();
+initSejour();
+</script>
+</body>
+</html>
