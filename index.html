@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+
 <html lang="fr">
 <head>
 <meta charset="UTF-8">
@@ -9,229 +10,289 @@
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
 :root {
-  --bg: #f5f0e8;
-  --ink: #1a1510;
-  --sepia: #8b6f47;
-  --gold: #c9913a;
-  --gold-light: #e8c87a;
-  --stone: #d4c9b5;
-  --paper: #ede8dc;
-  --paper2: #e6e0d2;
-  --shadow: rgba(26,21,16,0.12);
-  --danger: #a03020;
-  --ecarte-bg: rgba(160,48,32,0.06);
-  --ecarte-border: rgba(160,48,32,0.18);
+–bg: #f5f0e8;
+–ink: #1a1510;
+–sepia: #8b6f47;
+–gold: #c9913a;
+–gold-light: #e8c87a;
+–stone: #d4c9b5;
+–paper: #ede8dc;
+–paper2: #e6e0d2;
+–shadow: rgba(26,21,16,0.12);
+–danger: #a03020;
+–ecarte-bg: rgba(160,48,32,0.06);
+–ecarte-border: rgba(160,48,32,0.18);
 }
 
 body {
-  background: var(--bg);
-  font-family: 'DM Mono', monospace;
-  color: var(--ink);
-  min-height: 100vh;
-  padding: 2rem 1rem 5rem;
-  background-image:
-    radial-gradient(ellipse at 20% 10%, rgba(201,145,58,0.08) 0%, transparent 60%),
-    radial-gradient(ellipse at 80% 90%, rgba(139,111,71,0.07) 0%, transparent 55%);
+background: var(–bg);
+font-family: ‘DM Mono’, monospace;
+color: var(–ink);
+min-height: 100vh;
+padding: 2rem 1rem 5rem;
+background-image:
+radial-gradient(ellipse at 20% 10%, rgba(201,145,58,0.08) 0%, transparent 60%),
+radial-gradient(ellipse at 80% 90%, rgba(139,111,71,0.07) 0%, transparent 55%);
 }
 
 /* ── Header ── */
 header { text-align: center; margin-bottom: 2rem; }
 header h1 {
-  font-family: 'Playfair Display', serif;
-  font-size: clamp(1.6rem, 4vw, 2.6rem);
-  font-weight: 700; letter-spacing: 0.02em; color: var(--ink); line-height: 1.1;
+font-family: ‘Playfair Display’, serif;
+font-size: clamp(1.6rem, 4vw, 2.6rem);
+font-weight: 700; letter-spacing: 0.02em; color: var(–ink); line-height: 1.1;
 }
-header h1 em { font-style: italic; color: var(--sepia); }
-header p { margin-top: 0.4rem; font-size: 0.7rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--sepia); opacity: 0.8; }
-.divider { width: 60px; height: 2px; background: linear-gradient(90deg, transparent, var(--gold), transparent); margin: 0.8rem auto; }
-
+header h1 em { font-style: italic; color: var(–sepia); }
+header p { margin-top: 0.4rem; font-size: 0.7rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(–sepia); opacity: 0.8; }
+.divider { width: 60px; height: 2px; background: linear-gradient(90deg, transparent, var(–gold), transparent); margin: 0.8rem auto; }
 
 /* ── Bloc séjour ── */
 .sejour-block {
-  max-width: 900px;
-  margin: 0 auto 1.2rem;
-  border: 1px solid var(--stone);
-  border-radius: 2px;
-  background: var(--paper);
-  box-shadow: 0 2px 12px var(--shadow);
-  overflow: hidden;
+max-width: 900px;
+margin: 0 auto 1.2rem;
+border: 1px solid var(–stone);
+border-radius: 2px;
+background: var(–paper);
+box-shadow: 0 2px 12px var(–shadow);
+overflow: hidden;
 }
 
 .sejour-toggle {
-  display: flex;
-  align-items: center;
-  gap: 0.6rem;
-  padding: 0.7rem 1rem;
-  cursor: pointer;
-  user-select: none;
-  background: var(--paper);
-  transition: background 0.15s;
+display: flex;
+align-items: center;
+gap: 0.6rem;
+padding: 0.7rem 1rem;
+cursor: pointer;
+user-select: none;
+background: var(–paper);
+transition: background 0.15s;
 }
-.sejour-toggle:hover { background: var(--paper2); }
+.sejour-toggle:hover { background: var(–paper2); }
 
 .sejour-toggle-label {
-  font-size: 0.62rem;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
-  color: var(--sepia);
-  flex: 1;
+font-size: 0.62rem;
+letter-spacing: 0.16em;
+text-transform: uppercase;
+color: var(–sepia);
+flex: 1;
 }
 
 .sejour-chevron {
-  font-size: 0.55rem;
-  color: var(--stone);
-  transition: transform 0.2s;
+font-size: 0.55rem;
+color: var(–stone);
+transition: transform 0.2s;
 }
-.sejour-block.open .sejour-chevron { transform: rotate(90deg); color: var(--gold); }
+.sejour-block.open .sejour-chevron { transform: rotate(90deg); color: var(–gold); }
 
 .sejour-body {
-  display: none;
-  padding: 0.8rem 1rem 1rem;
-  border-top: 1px solid var(--stone);
-  background: var(--paper2);
+display: none;
+padding: 0.8rem 1rem 1rem;
+border-top: 1px solid var(–stone);
+background: var(–paper2);
 }
 .sejour-block.open .sejour-body { display: block; }
 
 .sejour-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  gap: 0.8rem 1.4rem;
+display: grid;
+grid-template-columns: 1fr 1fr 1fr;
+gap: 0.8rem 1.4rem;
 }
 
 .sejour-field { display: flex; flex-direction: column; gap: 3px; }
 
 .sejour-label {
-  font-size: 0.56rem;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: var(--sepia);
-  opacity: 0.75;
+font-size: 0.56rem;
+letter-spacing: 0.14em;
+text-transform: uppercase;
+color: var(–sepia);
+opacity: 0.75;
 }
 
 .sejour-input {
-  font-family: 'DM Mono', monospace;
-  font-size: 0.75rem;
-  color: var(--ink);
-  background: transparent;
-  border: none;
-  border-bottom: 1px solid var(--stone);
-  outline: none;
-  padding: 3px 0;
-  width: 100%;
-  transition: border-color 0.2s;
+font-family: ‘DM Mono’, monospace;
+font-size: 0.75rem;
+color: var(–ink);
+background: transparent;
+border: none;
+border-bottom: 1px solid var(–stone);
+outline: none;
+padding: 3px 0;
+width: 100%;
+transition: border-color 0.2s;
 }
-.sejour-input:focus { border-bottom-color: var(--gold); }
-.sejour-input::placeholder { color: var(--stone); font-style: italic; }
+.sejour-input:focus { border-bottom-color: var(–gold); }
+.sejour-input::placeholder { color: var(–stone); font-style: italic; }
 
 /* computed fields */
 .sejour-computed {
-  font-family: 'DM Mono', monospace;
-  font-size: 0.75rem;
-  color: var(--ink);
-  padding: 3px 0;
-  border-bottom: 1px dashed var(--stone);
-  min-height: 1.4rem;
+font-family: ‘DM Mono’, monospace;
+font-size: 0.75rem;
+color: var(–ink);
+padding: 3px 0;
+border-bottom: 1px dashed var(–stone);
+min-height: 1.4rem;
 }
 .sejour-computed.positive { color: #3a7a3a; }
-.sejour-computed.negative { color: var(--danger); }
+.sejour-computed.negative { color: var(–danger); }
 
 /* address link */
 .sejour-addr-link {
-  font-size: 0.62rem;
-  color: var(--gold);
-  text-decoration: none;
-  margin-top: 3px;
-  display: inline-block;
-  opacity: 0.8;
-  transition: opacity 0.15s;
+font-size: 0.62rem;
+color: var(–gold);
+text-decoration: none;
+margin-top: 3px;
+display: inline-block;
+opacity: 0.8;
+transition: opacity 0.15s;
 }
 .sejour-addr-link:hover { opacity: 1; text-decoration: underline; }
 
+/* Jour en cours stepper */
+.jour-stepper {
+display: flex;
+align-items: center;
+gap: 0.5rem;
+padding: 2px 0;
+border-bottom: 1px solid var(–stone);
+}
+.jour-stepper-btn {
+background: none;
+border: 1px solid var(–stone);
+color: var(–sepia);
+font-family: ‘DM Mono’, monospace;
+font-size: 0.8rem;
+width: 22px; height: 22px;
+border-radius: 2px;
+cursor: pointer;
+display: flex; align-items: center; justify-content: center;
+transition: all 0.12s;
+flex-shrink: 0;
+}
+.jour-stepper-btn:hover { background: var(–ink); color: var(–gold-light); border-color: var(–ink); }
+.jour-stepper-val {
+font-family: ‘DM Mono’, monospace;
+font-size: 0.75rem;
+color: var(–ink);
+min-width: 28px;
+text-align: center;
+}
+
 @media (max-width: 640px) {
-  .sejour-grid { grid-template-columns: 1fr 1fr; }
+.sejour-grid { grid-template-columns: 1fr 1fr; }
 }
 @media (max-width: 420px) {
-  .sejour-grid { grid-template-columns: 1fr; }
+.sejour-grid { grid-template-columns: 1fr; }
 }
+
+/* ── Header actions ── */
+.header-actions {
+display: flex;
+align-items: center;
+justify-content: center;
+gap: 1.5rem;
+margin-top: 0.5rem;
+}
+.summary-bar {
+font-size: 0.63rem;
+letter-spacing: 0.1em;
+text-transform: uppercase;
+color: var(–sepia);
+}
+.header-btn {
+font-family: ‘DM Mono’, monospace;
+font-size: 0.65rem;
+letter-spacing: 0.12em;
+text-transform: uppercase;
+background: none;
+border: none;
+border-bottom: 1px solid var(–stone);
+color: var(–sepia);
+cursor: pointer;
+padding: 2px 0;
+transition: color 0.15s, border-color 0.15s;
+}
+.header-btn:hover { color: var(–ink); border-color: var(–sepia); }
+.header-btn.primary { color: var(–gold); border-color: var(–gold); }
+.header-btn.primary:hover { color: var(–ink); border-color: var(–ink); }
 
 /* ── Toolbar ── */
 .toolbar {
-  max-width: 900px;
-  margin: 0 auto 1rem;
-  display: flex;
-  gap: 0.6rem;
-  flex-wrap: wrap;
-  align-items: center;
+max-width: 900px;
+margin: 0 auto 1rem;
+display: flex;
+gap: 0.6rem;
+flex-wrap: wrap;
+align-items: center;
 }
 .search-wrap {
-  flex: 1;
-  min-width: 160px;
-  position: relative;
+flex: 1;
+min-width: 160px;
+position: relative;
 }
 .search-wrap input {
-  width: 100%;
-  font-family: 'DM Mono', monospace;
-  font-size: 0.72rem;
-  padding: 0.45rem 0.8rem 0.45rem 2rem;
-  border: 1px solid var(--stone);
-  background: var(--paper);
-  color: var(--ink);
-  border-radius: 2px;
-  outline: none;
-  transition: border-color 0.2s;
+width: 100%;
+font-family: ‘DM Mono’, monospace;
+font-size: 0.72rem;
+padding: 0.45rem 0.8rem 0.45rem 2rem;
+border: 1px solid var(–stone);
+background: var(–paper);
+color: var(–ink);
+border-radius: 2px;
+outline: none;
+transition: border-color 0.2s;
 }
-.search-wrap input:focus { border-color: var(--gold); }
-.search-wrap input::placeholder { color: var(--stone); }
-.search-wrap::before { content: "⌕"; position: absolute; left: 0.6rem; top: 50%; transform: translateY(-50%); font-size: 0.9rem; color: var(--stone); pointer-events: none; }
+.search-wrap input:focus { border-color: var(–gold); }
+.search-wrap input::placeholder { color: var(–stone); }
+.search-wrap::before { content: “⌕”; position: absolute; left: 0.6rem; top: 50%; transform: translateY(-50%); font-size: 0.9rem; color: var(–stone); pointer-events: none; }
 
 .sort-select {
-  font-family: 'DM Mono', monospace;
-  font-size: 0.65rem;
-  letter-spacing: 0.08em;
-  padding: 0.45rem 0.7rem;
-  border: 1px solid var(--stone);
-  background: var(--paper);
-  color: var(--sepia);
-  border-radius: 2px;
-  outline: none;
-  cursor: pointer;
+font-family: ‘DM Mono’, monospace;
+font-size: 0.65rem;
+letter-spacing: 0.08em;
+padding: 0.45rem 0.7rem;
+border: 1px solid var(–stone);
+background: var(–paper);
+color: var(–sepia);
+border-radius: 2px;
+outline: none;
+cursor: pointer;
 }
 
 .pill {
-  font-family: 'DM Mono', monospace;
-  font-size: 0.62rem;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  padding: 0.42rem 0.9rem;
-  border: 1px solid var(--stone);
-  background: transparent;
-  color: var(--sepia);
-  cursor: pointer;
-  border-radius: 30px;
-  transition: all 0.15s;
-  white-space: nowrap;
+font-family: ‘DM Mono’, monospace;
+font-size: 0.62rem;
+letter-spacing: 0.1em;
+text-transform: uppercase;
+padding: 0.42rem 0.9rem;
+border: 1px solid var(–stone);
+background: transparent;
+color: var(–sepia);
+cursor: pointer;
+border-radius: 30px;
+transition: all 0.15s;
+white-space: nowrap;
 }
-.pill:hover { border-color: var(--sepia); color: var(--ink); }
-.pill.on { background: var(--danger); border-color: var(--danger); color: #fff; }
+.pill:hover { border-color: var(–sepia); color: var(–ink); }
+.pill.on { background: var(–danger); border-color: var(–danger); color: #fff; }
 
 /* ── Table wrapper ── */
 .table-wrapper {
-  max-width: 900px;
-  margin: 0 auto;
-  background: var(--paper);
-  border: 1px solid var(--stone);
-  border-radius: 2px;
-  overflow: auto;
-  box-shadow: 0 4px 24px var(--shadow), 0 1px 0 rgba(255,255,255,0.6) inset;
+max-width: 900px;
+margin: 0 auto;
+background: var(–paper);
+border: 1px solid var(–stone);
+border-radius: 2px;
+overflow: auto;
+box-shadow: 0 4px 24px var(–shadow), 0 1px 0 rgba(255,255,255,0.6) inset;
 }
 table { width: 100%; border-collapse: collapse; }
 
-thead tr { background: var(--ink); }
+thead tr { background: var(–ink); }
 thead th {
-  padding: 0.85rem 1rem;
-  font-size: 0.62rem; font-weight: 400;
-  letter-spacing: 0.18em; text-transform: uppercase;
-  text-align: left; color: var(--gold-light);
+padding: 0.85rem 1rem;
+font-size: 0.62rem; font-weight: 400;
+letter-spacing: 0.18em; text-transform: uppercase;
+text-align: left; color: var(–gold-light);
 }
 thead th.col-note { text-align: center; width: 150px; }
 thead th.col-jour { width: 56px; text-align: center; }
@@ -244,12 +305,12 @@ thead th.col-flags { width: 80px; text-align: center; }
 
 /* Main data row */
 tbody tr.main-row {
-  border-bottom: none;
-  transition: background 0.12s;
-  cursor: pointer;
+border-bottom: none;
+transition: background 0.12s;
+cursor: pointer;
 }
 tbody tr.main-row:hover { background: rgba(201,145,58,0.07); }
-tbody tr.main-row.ecarte { background: var(--ecarte-bg) !important; opacity: 0.6; }
+tbody tr.main-row.ecarte { background: var(–ecarte-bg) !important; opacity: 0.6; }
 tbody tr.main-row.ecarte:hover { opacity: 0.8; }
 tbody tr.main-row.hidden-row { display: none; }
 
@@ -258,26 +319,26 @@ td { padding: 0.6rem 1rem; vertical-align: middle; }
 /* Expand chevron */
 .expand-cell { width: 28px; padding: 0 0 0 0.8rem; }
 .chevron {
-  display: inline-block;
-  font-size: 0.6rem;
-  color: var(--stone);
-  transition: transform 0.2s, color 0.15s;
-  user-select: none;
+display: inline-block;
+font-size: 0.6rem;
+color: var(–stone);
+transition: transform 0.2s, color 0.15s;
+user-select: none;
 }
-tr.main-row:hover .chevron { color: var(--sepia); }
-tr.main-row.open .chevron { transform: rotate(90deg); color: var(--gold); }
+tr.main-row:hover .chevron { color: var(–sepia); }
+tr.main-row.open .chevron { transform: rotate(90deg); color: var(–gold); }
 
 /* Lieu input */
 .lieu-input {
-  font-family: 'Playfair Display', serif;
-  font-size: 0.9rem; color: var(--ink);
-  background: transparent; border: none;
-  border-bottom: 1px dashed transparent;
-  outline: none; width: 100%; padding: 1px 0;
-  transition: border-color 0.2s;
+font-family: ‘Playfair Display’, serif;
+font-size: 0.9rem; color: var(–ink);
+background: transparent; border: none;
+border-bottom: 1px dashed transparent;
+outline: none; width: 100%; padding: 1px 0;
+transition: border-color 0.2s;
 }
-.lieu-input:focus { border-bottom-color: var(--gold); }
-tr:hover .lieu-input { border-bottom-color: var(--stone); }
+.lieu-input:focus { border-bottom-color: var(–gold); }
+tr:hover .lieu-input { border-bottom-color: var(–stone); }
 
 /* Stars */
 .stars { display: flex; justify-content: center; gap: 2px; align-items: center; }
@@ -285,30 +346,30 @@ tr:hover .lieu-input { border-bottom-color: var(--stone); }
 .star.active { filter: none; }
 .star:hover { transform: scale(1.2); }
 .reset-btn {
-  font-size: 0.5rem; color: var(--sepia); cursor: pointer; opacity: 0;
-  transition: opacity 0.2s; margin-left: 4px; padding: 2px 4px;
-  border: 1px solid var(--stone); border-radius: 2px;
-  background: transparent; font-family: 'DM Mono', monospace;
+font-size: 0.5rem; color: var(–sepia); cursor: pointer; opacity: 0;
+transition: opacity 0.2s; margin-left: 4px; padding: 2px 4px;
+border: 1px solid var(–stone); border-radius: 2px;
+background: transparent; font-family: ‘DM Mono’, monospace;
 }
 tr:hover .reset-btn { opacity: 0.4; }
-.reset-btn:hover { opacity: 1 !important; color: var(--ink); }
+.reset-btn:hover { opacity: 1 !important; color: var(–ink); }
 
 /* Comment */
 .comment-input {
-  width: 100%; background: transparent; border: none;
-  border-bottom: 1px solid transparent;
-  font-family: 'DM Mono', monospace; font-size: 0.72rem; color: var(--ink);
-  padding: 2px 0; outline: none; transition: border-color 0.2s;
+width: 100%; background: transparent; border: none;
+border-bottom: 1px solid transparent;
+font-family: ‘DM Mono’, monospace; font-size: 0.72rem; color: var(–ink);
+padding: 2px 0; outline: none; transition: border-color 0.2s;
 }
-.comment-input::placeholder { color: var(--stone); font-style: italic; }
-.comment-input:focus { border-bottom-color: var(--gold); }
+.comment-input::placeholder { color: var(–stone); font-style: italic; }
+.comment-input:focus { border-bottom-color: var(–gold); }
 
 /* Flag écarté */
 .flag-btn {
-  background: none; border: none; cursor: pointer;
-  font-size: 1rem; line-height: 1;
-  opacity: 0.2; transition: opacity 0.15s, transform 0.15s;
-  padding: 2px 4px;
+background: none; border: none; cursor: pointer;
+font-size: 1rem; line-height: 1;
+opacity: 0.2; transition: opacity 0.15s, transform 0.15s;
+padding: 2px 4px;
 }
 .flag-btn:hover { opacity: 0.6; transform: scale(1.15); }
 .flag-btn.flagged { opacity: 1; }
@@ -317,198 +378,316 @@ tr:hover .reset-btn { opacity: 0.4; }
 /* Delete */
 .del-btn { display: none !important; }
 .del-btn-hidden {
-  background: none; border: none; cursor: pointer;
-  color: var(--stone); font-size: 0.8rem; padding: 2px 4px;
-  border-radius: 2px; transition: color 0.15s, background 0.15s;
-  opacity: 0; line-height: 1;
+background: none; border: none; cursor: pointer;
+color: var(–stone); font-size: 0.8rem; padding: 2px 4px;
+border-radius: 2px; transition: color 0.15s, background 0.15s;
+opacity: 0; line-height: 1;
 }
 tr:hover .del-btn { display: none !important; }
 .del-btn-hidden { opacity: 1; }
-.del-btn:hover { color: var(--danger); background: rgba(160,48,32,0.08); }
-
-
+.del-btn:hover { color: var(–danger); background: rgba(160,48,32,0.08); }
 
 /* ── Sortable headers ── */
 thead th.sortable {
-  cursor: pointer;
-  user-select: none;
-  transition: background 0.15s;
-  padding-right: 1.4rem;
-  position: relative;
+cursor: pointer;
+user-select: none;
+transition: background 0.15s;
+padding-right: 1.4rem;
+position: relative;
 }
 thead th.sortable:hover { background: #2a2418; }
 thead th.sortable::after {
-  content: '';
-  position: absolute;
-  right: 0.55rem;
-  top: 50%;
-  transform: translateY(-50%);
-  opacity: 0.25;
-  font-size: 0.6rem;
-  content: '⇅';
+content: ‘’;
+position: absolute;
+right: 0.55rem;
+top: 50%;
+transform: translateY(-50%);
+opacity: 0.25;
+font-size: 0.6rem;
+content: ‘⇅’;
 }
-thead th.sortable.sort-asc::after  { content: '↑'; opacity: 1; color: var(--gold-light); }
-thead th.sortable.sort-desc::after { content: '↓'; opacity: 1; color: var(--gold-light); }
+thead th.sortable.sort-asc::after  { content: ‘↑’; opacity: 1; color: var(–gold-light); }
+thead th.sortable.sort-desc::after { content: ‘↓’; opacity: 1; color: var(–gold-light); }
+
+/* ── Banking panel ── */
+.banking-block {
+max-width: 900px;
+margin: 1.2rem auto 0;
+border: 1px solid var(–stone);
+border-radius: 2px;
+background: var(–paper);
+box-shadow: 0 2px 12px var(–shadow);
+overflow: hidden;
+}
+.banking-toggle {
+display: flex;
+align-items: center;
+gap: 0.6rem;
+padding: 0.7rem 1rem;
+cursor: pointer;
+user-select: none;
+background: var(–paper);
+transition: background 0.15s;
+}
+.banking-toggle:hover { background: var(–paper2); }
+.banking-toggle-label {
+font-size: 0.62rem;
+letter-spacing: 0.16em;
+text-transform: uppercase;
+color: var(–sepia);
+flex: 1;
+}
+.banking-chevron {
+font-size: 0.55rem;
+color: var(–stone);
+transition: transform 0.2s;
+}
+.banking-block.open .banking-chevron { transform: rotate(90deg); color: var(–gold); }
+.banking-body {
+display: none;
+border-top: 1px solid var(–stone);
+}
+.banking-block.open .banking-body { display: block; }
+
+.banking-table { width: 100%; border-collapse: collapse; }
+.banking-table thead tr { background: var(–ink); }
+.banking-table thead th {
+padding: 0.6rem 0.8rem;
+font-size: 0.58rem;
+font-weight: 400;
+letter-spacing: 0.16em;
+text-transform: uppercase;
+text-align: left;
+color: var(–gold-light);
+}
+.banking-table thead th.th-montant { text-align: right; width: 70px; }
+.banking-table thead th.th-jour { width: 70px; }
+.banking-table thead th.th-compte { width: 110px; }
+.banking-table thead th.th-del { width: 32px; }
+
+.banking-table tbody tr { border-bottom: 1px solid var(–stone); transition: background 0.12s; }
+.banking-table tbody tr:last-child { border-bottom: none; }
+.banking-table tbody tr:nth-child(even) { background: rgba(212,201,181,0.25); }
+.banking-table tbody tr:hover { background: rgba(201,145,58,0.07); }
+.banking-table td { padding: 0.5rem 0.8rem; vertical-align: middle; }
+
+.banking-input {
+font-family: ‘DM Mono’, monospace;
+font-size: 0.73rem;
+color: var(–ink);
+background: transparent;
+border: none;
+border-bottom: 1px solid transparent;
+outline: none;
+padding: 2px 0;
+width: 100%;
+transition: border-color 0.2s;
+}
+.banking-input:focus { border-bottom-color: var(–gold); }
+.banking-input::placeholder { color: var(–stone); font-style: italic; }
+.banking-input.right { text-align: right; }
+
+.banking-del-btn {
+background: none; border: none; cursor: pointer;
+color: var(–stone); font-size: 0.8rem;
+padding: 2px 4px; border-radius: 2px;
+transition: color 0.15s; opacity: 0; line-height: 1;
+}
+tr:hover .banking-del-btn { opacity: 1; }
+.banking-del-btn:hover { color: var(–danger); }
+
+.banking-footer {
+display: flex;
+align-items: center;
+justify-content: space-between;
+padding: 0.55rem 0.8rem;
+border-top: 1px dashed var(–stone);
+background: var(–paper2);
+}
+.banking-total {
+font-family: ‘DM Mono’, monospace;
+font-size: 0.75rem;
+color: var(–ink);
+}
+.banking-total span { color: var(–gold); font-weight: 600; }
 
 /* ── Column resize ── */
 thead th { position: relative; }
 .resize-handle {
-  position: absolute;
-  right: 0; top: 0; bottom: 0;
-  width: 6px;
-  cursor: col-resize;
-  user-select: none;
-  z-index: 1;
+position: absolute;
+right: 0; top: 0; bottom: 0;
+width: 6px;
+cursor: col-resize;
+user-select: none;
+z-index: 1;
 }
 .resize-handle:hover, .resize-handle.dragging {
-  background: rgba(201,145,58,0.35);
+background: rgba(201,145,58,0.35);
 }
 table { table-layout: fixed; }
 
 /* ── Detail row (progressive disclosure) ── */
-tbody tr.detail-row { display: none; border-bottom: 1px solid var(--stone); }
+tbody tr.detail-row { display: none; border-bottom: 1px solid var(–stone); }
 tbody tr.detail-row.open { display: table-row; }
 tbody tr.detail-row td {
-  padding: 0 1rem 0.9rem 2.5rem;
-  background: var(--paper2);
+padding: 0 1rem 0.9rem 2.5rem;
+background: var(–paper2);
 }
-tbody tr.detail-row.ecarte td { background: var(--ecarte-bg); }
+tbody tr.detail-row.ecarte td { background: var(–ecarte-bg); }
 
 .detail-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  gap: 0.7rem 1.2rem;
-  padding-top: 0.6rem;
-  border-top: 1px dashed var(--stone);
+display: grid;
+grid-template-columns: 1fr 1fr 1fr;
+gap: 0.7rem 1.2rem;
+padding-top: 0.6rem;
+border-top: 1px dashed var(–stone);
 }
 
 .detail-field { display: flex; flex-direction: column; gap: 3px; }
 .detail-label {
-  font-size: 0.56rem; letter-spacing: 0.14em; text-transform: uppercase;
-  color: var(--sepia); opacity: 0.7;
+font-size: 0.56rem; letter-spacing: 0.14em; text-transform: uppercase;
+color: var(–sepia); opacity: 0.7;
 }
 .detail-input {
-  font-family: 'DM Mono', monospace; font-size: 0.73rem; color: var(--ink);
-  background: transparent; border: none;
-  border-bottom: 1px solid var(--stone);
-  outline: none; padding: 2px 0; width: 100%;
-  transition: border-color 0.2s;
+font-family: ‘DM Mono’, monospace; font-size: 0.73rem; color: var(–ink);
+background: transparent; border: none;
+border-bottom: 1px solid var(–stone);
+outline: none; padding: 2px 0; width: 100%;
+transition: border-color 0.2s;
 }
-.detail-input:focus { border-bottom-color: var(--gold); }
-.detail-input::placeholder { color: var(--stone); font-style: italic; font-size: 0.68rem; }
+.detail-input:focus { border-bottom-color: var(–gold); }
+.detail-input::placeholder { color: var(–stone); font-style: italic; font-size: 0.68rem; }
 
-.detail-input.url-input { color: var(--sepia); }
-.url-preview { font-size: 0.62rem; color: var(--sepia); opacity: 0.7; margin-top: 1px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-.url-preview a { color: var(--gold); text-decoration: none; }
+.detail-input.url-input { color: var(–sepia); }
+.url-preview { font-size: 0.62rem; color: var(–sepia); opacity: 0.7; margin-top: 1px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.url-preview a { color: var(–gold); text-decoration: none; }
 .url-preview a:hover { text-decoration: underline; }
 
 /* Tags concurrent */
 .concurrent-wrap { display: flex; flex-wrap: wrap; gap: 4px; margin-top: 3px; }
 .concurrent-tag {
-  font-size: 0.6rem; letter-spacing: 0.06em;
-  padding: 1px 6px; border-radius: 30px;
-  background: rgba(139,111,71,0.12);
-  border: 1px solid var(--stone);
-  color: var(--sepia);
+font-size: 0.6rem; letter-spacing: 0.06em;
+padding: 1px 6px; border-radius: 30px;
+background: rgba(139,111,71,0.12);
+border: 1px solid var(–stone);
+color: var(–sepia);
 }
 
 /* Add row */
-tfoot .add-row td { padding: 0.5rem 1rem; border-top: 1px dashed var(--stone); }
+tfoot .add-row td { padding: 0.5rem 1rem; border-top: 1px dashed var(–stone); }
 .add-btn {
-  font-family: 'DM Mono', monospace; font-size: 0.62rem;
-  letter-spacing: 0.12em; text-transform: uppercase;
-  background: none; border: 1px dashed var(--stone);
-  color: var(--sepia); padding: 0.38rem 1rem;
-  cursor: pointer; border-radius: 2px; transition: all 0.15s;
+font-family: ‘DM Mono’, monospace; font-size: 0.62rem;
+letter-spacing: 0.12em; text-transform: uppercase;
+background: none; border: 1px dashed var(–stone);
+color: var(–sepia); padding: 0.38rem 1rem;
+cursor: pointer; border-radius: 2px; transition: all 0.15s;
 }
-.add-btn:hover { border-color: var(--gold); color: var(--ink); background: rgba(201,145,58,0.06); }
+.add-btn:hover { border-color: var(–gold); color: var(–ink); background: rgba(201,145,58,0.06); }
 
 /* ── Action bar ── */
-.actions {
-  max-width: 900px; margin: 1.2rem auto 0;
-  display: flex; align-items: center; gap: 0.7rem; flex-wrap: wrap;
-}
-.summary-bar { flex: 1; font-size: 0.63rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--sepia); }
+.actions { max-width: 900px; margin: 1.2rem auto 0; display: flex; align-items: center; gap: 0.7rem; flex-wrap: wrap; }
 .btn {
-  font-family: 'DM Mono', monospace; font-size: 0.63rem;
-  letter-spacing: 0.14em; text-transform: uppercase;
-  padding: 0.5rem 1rem; border: 1px solid var(--sepia);
-  background: transparent; color: var(--sepia);
-  cursor: pointer; border-radius: 1px; transition: all 0.15s;
+font-family: ‘DM Mono’, monospace; font-size: 0.63rem;
+letter-spacing: 0.14em; text-transform: uppercase;
+padding: 0.5rem 1rem; border: 1px solid var(–sepia);
+background: transparent; color: var(–sepia);
+cursor: pointer; border-radius: 1px; transition: all 0.15s;
 }
-.btn:hover { background: var(--ink); color: var(--gold-light); border-color: var(--ink); }
-.btn.active { background: var(--ink); color: var(--gold-light); border-color: var(--ink); }
-.btn.active:hover { background: var(--sepia); border-color: var(--sepia); color: var(--bg); }
+.btn:hover { background: var(–ink); color: var(–gold-light); border-color: var(–ink); }
+.btn.active { background: var(–ink); color: var(–gold-light); border-color: var(–ink); }
+.btn.active:hover { background: var(–sepia); border-color: var(–sepia); color: var(–bg); }
 
 /* csv panel removed */
 
 /* No results */
-.no-results { text-align: center; padding: 2rem; font-size: 0.72rem; color: var(--stone); font-style: italic; }
+.no-results { text-align: center; padding: 2rem; font-size: 0.72rem; color: var(–stone); font-style: italic; }
 
 @media (max-width: 640px) {
-  .detail-grid { grid-template-columns: 1fr 1fr; }
-  thead th.col-comment, tbody td.col-comment { display: none; }
+.detail-grid { grid-template-columns: 1fr 1fr; }
+thead th.col-comment, tbody td.col-comment { display: none; }
 }
 @media (max-width: 420px) {
-  .detail-grid { grid-template-columns: 1fr; }
+.detail-grid { grid-template-columns: 1fr; }
 }
 </style>
+
 </head>
 <body>
 
 <header>
   <h1>Lieux du <em>Périgord</em></h1>
   <div class="divider"></div>
-  <p>Notation personnelle — Voyage</p>
+  <div class="header-actions">
+    <span class="summary-bar" id="summary"></span>
+    <button class="header-btn" id="copy-all-btn" onclick="copyAllJSON(this)" title="Copier le JSON">⎘ Copier</button>
+    <button class="header-btn primary" id="import-json-btn" onclick="importFromClipboard(this)" title="Importer depuis le presse-papier">⬆ Importer</button>
+  </div>
 </header>
 
-
-<div class="sejour-block" id="sejour-block">
-  <div class="sejour-toggle" onclick="toggleSejour()">
-    <span class="sejour-chevron">▶</span>
-    <span class="sejour-toggle-label">Infos du séjour</span>
-  </div>
-  <div class="sejour-body">
+<div class="sejour-block open" id="sejour-block">
+  <div class="sejour-body" style="display:block">
     <div class="sejour-grid">
 
-      <div class="sejour-field">
-        <span class="sejour-label">Budget quotidien</span>
-        <input class="sejour-input" id="sej-budget-jour" type="text" placeholder="ex : 80 €" oninput="saveSejour(); updateBudget()">
-      </div>
+```
+  <div class="sejour-field">
+    <span class="sejour-label">Budget total</span>
+    <input class="sejour-input" id="sej-budget-total-input" type="text" placeholder="ex : 600 €" oninput="saveSejour(); updateBudget()">
+  </div>
 
-      <div class="sejour-field">
-        <span class="sejour-label">Nombre de jours</span>
-        <input class="sejour-input" id="sej-nb-jours" type="number" min="1" placeholder="ex : 7" oninput="saveSejour(); updateBudget()">
-      </div>
+  <div class="sejour-field">
+    <span class="sejour-label">Nombre de jours</span>
+    <input class="sejour-input" id="sej-nb-jours" type="number" min="1" placeholder="ex : 7" oninput="saveSejour(); updateBudget()">
+  </div>
 
-      <div class="sejour-field">
-        <span class="sejour-label">Budget total</span>
-        <div class="sejour-computed" id="sej-budget-total">—</div>
-      </div>
+  <div class="sejour-field">
+    <span class="sejour-label">Budget quotidien</span>
+    <div class="sejour-computed" id="sej-budget-jour">—</div>
+  </div>
 
-      <div class="sejour-field">
-        <span class="sejour-label">Dépense totale</span>
-        <input class="sejour-input" id="sej-depense" type="text" placeholder="ex : 320 €" oninput="saveSejour(); updateBudget()">
-      </div>
+  <div class="sejour-field">
+    <span class="sejour-label">Dépense totale</span>
+    <div class="sejour-computed" id="sej-depense-calc">—</div>
+  </div>
 
-      <div class="sejour-field">
-        <span class="sejour-label">Reste / Dépassement</span>
-        <div class="sejour-computed" id="sej-reste">—</div>
-      </div>
-
-      <div class="sejour-field">
-        <span class="sejour-label">Hébergement</span>
-        <input class="sejour-input" id="sej-hebergement" type="text" placeholder="Nom ou adresse" oninput="saveSejour(); updateAddrLink()" value="">
-        <input type="hidden" id="sej-adresse" value="">
-        <a class="sejour-addr-link" id="sej-addr-link" href="#" target="_blank" rel="noopener" style="display:none">↗ Ouvrir dans Maps</a>
-      </div>
-
-
-    <div style="margin-top:1.2rem; border-top:1px dashed var(--stone); padding-top:1rem;">
-      <div class="sejour-label" style="margin-bottom:0.5rem;">Planning</div>
-      <div id="sej-lieux-list" style="font-size:0.72rem; color:var(--ink); line-height:1.9; font-family:'DM Mono',monospace;">—</div>
+  <div class="sejour-field">
+    <span class="sejour-label">Jour en cours</span>
+    <div class="jour-stepper">
+      <button class="jour-stepper-btn" onclick="stepJour(-1)">−</button>
+      <span class="jour-stepper-val" id="sej-jour-val">—</span>
+      <button class="jour-stepper-btn" onclick="stepJour(+1)">+</button>
     </div>
-    </div>
+  </div>
+
+  <div class="sejour-field">
+    <span class="sejour-label">Budget/jour recalibré</span>
+    <div class="sejour-computed" id="sej-budget-restant">—</div>
+  </div>
+
+  <div class="sejour-field">
+    <span class="sejour-label">Restant aujourd'hui</span>
+    <div class="sejour-computed" id="sej-restant-auj">—</div>
+  </div>
+
+  <div class="sejour-field">
+    <span class="sejour-label">Reste / Dépassement</span>
+    <div class="sejour-computed" id="sej-reste">—</div>
+  </div>
+
+  <div class="sejour-field">
+    <span class="sejour-label">Hébergement</span>
+    <input class="sejour-input" id="sej-hebergement" type="text" placeholder="Nom ou adresse" oninput="saveSejour(); updateAddrLink()" value="">
+    <input type="hidden" id="sej-adresse" value="">
+    <a class="sejour-addr-link" id="sej-addr-link" href="#" target="_blank" rel="noopener" style="display:none">↗ Ouvrir dans Maps</a>
+  </div>
+
+
+<div style="margin-top:1.2rem; border-top:1px dashed var(--stone); padding-top:1rem;">
+  <div class="sejour-label" style="margin-bottom:0.5rem;">Planning</div>
+  <div id="sej-lieux-list" style="font-size:0.72rem; color:var(--ink); line-height:1.9; font-family:'DM Mono',monospace;">—</div>
+</div>
+</div>
+```
+
   </div>
 </div>
 
@@ -546,12 +725,29 @@ tfoot .add-row td { padding: 0.5rem 1rem; border-top: 1px dashed var(--stone); }
   <div class="no-results" id="no-results" style="display:none">Aucun lieu trouvé.</div>
 </div>
 
-<div class="actions">
-  <span class="summary-bar" id="summary"></span>
-  <button class="btn" id="copy-all-btn" onclick="copyAllJSON(this)" title="Copier le JSON">⎘</button>
-  <button class="btn" id="import-json-btn" onclick="importFromClipboard(this)" title="Importer depuis le presse-papier">⬆ Import</button>
+<div class="banking-block open" id="banking-block">
+  <div class="banking-toggle" style="cursor:default">
+    <span class="banking-toggle-label">Dépenses</span>
+  </div>
+  <div class="banking-body">
+    <table class="banking-table">
+      <thead>
+        <tr>
+          <th class="th-jour">Jour</th>
+          <th>Label</th>
+          <th class="th-compte">Compte</th>
+          <th class="th-montant">💶</th>
+          <th class="th-del"></th>
+        </tr>
+      </thead>
+      <tbody id="banking-tbody"></tbody>
+    </table>
+    <div class="banking-footer">
+      <button class="add-btn" onclick="addBankingRow()">＋ Nouvelle dépense</button>
+      <div class="banking-total">Total : <span id="banking-total">0.00 €</span></div>
+    </div>
+  </div>
 </div>
-
 
 <script>
 const STATE_KEY = "perigord_v8";
@@ -717,7 +913,7 @@ function applyFilters() {
     const show = visibleSet.has(i);
     tr.classList.toggle("hidden-row", !show);
     const det = document.getElementById(`detail-${i}`);
-    if (det) det.style.display = show ? "" : "none";
+    if (det) { if (!show) det.style.display = "none"; else det.style.removeProperty("display"); }
   });
 
   const visibleCount = orderedIndices.length;
@@ -729,7 +925,7 @@ function applyFilters() {
 function renderRowPair(row, i) {
   // ── Main row ──
   const tr = document.createElement("tr");
-  tr.className = "main-row" + (row.ecarte ? " écarté" : "");
+  tr.className = "main-row" + (row.ecarte ? " ecarte" : "");
   tr.dataset.idx = i;
 
   // Chevron
@@ -900,7 +1096,7 @@ function renderRowPair(row, i) {
 
   // Click to expand
   tr.addEventListener("click", () => toggleDetail(i, tr, detTr, chev));
-  detTr.className = "detail-row" + (row.ecarte ? " écarté" : "");
+  detTr.className = "detail-row" + (row.ecarte ? " ecarte" : "");
   detTr.id = `detail-${i}`;
 
   const detTd = document.createElement("td");
@@ -1114,30 +1310,23 @@ function initResize() {
 
 // ── Séjour ──
 function saveSejour() {
-  notes.budgetJour   = document.getElementById("sej-budget-jour").value;
+  notes.budgetTotal  = document.getElementById("sej-budget-total-input").value;
   notes.nbJours      = document.getElementById("sej-nb-jours").value;
-  notes.depense      = document.getElementById("sej-depense").value;
+  // jourEnCours saved via stepJour
   notes.hebergement  = document.getElementById("sej-hebergement").value;
-  notes._sejourOpen  = document.getElementById("sejour-block").classList.contains("open");
   saveState();
 }
 
 function initSejour() {
   const s = notes;
-  if (s.budgetJour)  document.getElementById("sej-budget-jour").value = s.budgetJour;
+  if (s.budgetTotal) document.getElementById("sej-budget-total-input").value = s.budgetTotal;
   if (s.nbJours)     document.getElementById("sej-nb-jours").value    = s.nbJours;
-  if (s.depense)     document.getElementById("sej-depense").value      = s.depense;
+  updateJourDisplay();
   if (s.hebergement) document.getElementById("sej-hebergement").value  = s.hebergement;
   else               document.getElementById("sej-hebergement").value  = "Logis Hôtel le Boudoir, 15 Rue Jacques Manchotte, 24170 Pays de Belvès";
-  if (s._sejourOpen) document.getElementById("sejour-block").classList.add("open");
   updateBudget();
   updateAddrLink();
   updateSejourLieux();
-}
-
-function toggleSejour() {
-  document.getElementById("sejour-block").classList.toggle("open");
-  saveSejour();
 }
 
 function parseAmount(s) {
@@ -1146,19 +1335,99 @@ function parseAmount(s) {
   return isNaN(n) ? null : n;
 }
 
+function parseJourNum(s) {
+  if (!s) return null;
+  const n = parseInt((s + "").replace(/[^0-9]/g, ""));
+  return isNaN(n) ? null : n;
+}
+
+function stepJour(delta) {
+  const nb = parseFloat(document.getElementById("sej-nb-jours").value) || null;
+  const cur = parseJourNum(notes.jourEnCours) || 0;
+  const next = Math.max(0, nb ? Math.min(nb, cur + delta) : Math.max(0, cur + delta));
+  notes.jourEnCours = next > 0 ? "J" + next : null;
+  saveState();
+  updateJourDisplay();
+  updateBudget();
+}
+
+function updateJourDisplay() {
+  const el = document.getElementById("sej-jour-val");
+  if (el) el.textContent = notes.jourEnCours || "—";
+}
+
 function updateBudget() {
-  const jour = parseAmount(document.getElementById("sej-budget-jour").value);
-  const nb   = parseFloat(document.getElementById("sej-nb-jours").value) || null;
-  const dep  = parseAmount(document.getElementById("sej-depense").value);
+  const total = parseAmount(document.getElementById("sej-budget-total-input").value);
+  const nb    = parseFloat(document.getElementById("sej-nb-jours").value) || null;
+  const jourCur = parseJourNum(notes.jourEnCours) || 0;
 
-  const totalEl  = document.getElementById("sej-budget-total");
-  const resteEl  = document.getElementById("sej-reste");
+  // Dépenses clôturées = lignes dont le jour <= jour en cours
+  const banking = getBanking();
+  const depCloturees = banking.reduce((sum, e) => {
+    const j = parseJourNum(e.jour);
+    const montant = parseFloat((e.montant || "").replace(/[^0-9.,]/g, "").replace(",", "."));
+    if (!isNaN(montant) && j !== null && j < jourCur) return sum + montant;
+    return sum;
+  }, 0);
 
-  const total = (jour && nb) ? jour * nb : null;
-  totalEl.textContent = total !== null ? total.toFixed(2) + " €" : "—";
+  // Dépenses totales (toutes lignes)
+  const depTotal = banking.reduce((sum, e) => {
+    const n = parseFloat((e.montant || "").replace(/[^0-9.,]/g, "").replace(",", "."));
+    return sum + (isNaN(n) ? 0 : n);
+  }, 0);
 
-  if (total !== null && dep !== null) {
-    const reste = total - dep;
+  // Dépense totale display
+  const depCalcEl = document.getElementById("sej-depense-calc");
+  if (depCalcEl) depCalcEl.textContent = banking.length > 0 ? depTotal.toFixed(2) + " €" : "—";
+
+  // Budget quotidien moyen = total / nb
+  const jourEl = document.getElementById("sej-budget-jour");
+  if (jourEl) jourEl.textContent = (total && nb) ? (total / nb).toFixed(2) + " €" : "—";
+
+  // Jours restants
+  const joursRestants = nb && jourCur > 0 ? Math.max(0, nb - jourCur) : null;
+
+  // Budget journalier restant = (total - dépenses clôturées) / jours restants
+  // Budget/jour recalibré = (total - dépenses clôturées) / jours restants (j courant inclus)
+  const joursAvecAujourdhui = nb && jourCur > 0 ? Math.max(0, nb - jourCur + 1) : null;
+  const budgetParJour = (total && joursAvecAujourdhui > 0) ? (total - depCloturees) / joursAvecAujourdhui : null;
+
+  const budgetRestantEl = document.getElementById("sej-budget-restant");
+  if (budgetRestantEl) {
+    if (budgetParJour !== null) {
+      budgetRestantEl.textContent = budgetParJour.toFixed(2) + " €/j (" + joursAvecAujourdhui + "j)";
+      budgetRestantEl.className = "sejour-computed" + (budgetParJour < 0 ? " negative" : "");
+    } else {
+      budgetRestantEl.textContent = "—";
+      budgetRestantEl.className = "sejour-computed";
+    }
+  }
+
+  // Dépenses du jour en cours uniquement
+  const depAujourdhui = banking.reduce((sum, e) => {
+    const j = parseJourNum(e.jour);
+    const montant = parseFloat((e.montant || "").replace(/[^0-9.,]/g, "").replace(",", "."));
+    if (!isNaN(montant) && j === jourCur) return sum + montant;
+    return sum;
+  }, 0);
+
+  // Restant aujourd'hui = budget/jour - dépenses du jour
+  const restantAujEl = document.getElementById("sej-restant-auj");
+  if (restantAujEl) {
+    if (budgetParJour !== null && jourCur > 0) {
+      const restantAuj = budgetParJour - depAujourdhui;
+      restantAujEl.textContent = (restantAuj >= 0 ? "" : "") + restantAuj.toFixed(2) + " €";
+      restantAujEl.className = "sejour-computed" + (restantAuj < 0 ? " negative" : " positive");
+    } else {
+      restantAujEl.textContent = "—";
+      restantAujEl.className = "sejour-computed";
+    }
+  }
+
+  // Reste global
+  const resteEl = document.getElementById("sej-reste");
+  if (total !== null && banking.length > 0) {
+    const reste = total - depTotal;
     resteEl.textContent = (reste >= 0 ? "+" : "") + reste.toFixed(2) + " €";
     resteEl.className = "sejour-computed " + (reste >= 0 ? "positive" : "negative");
   } else {
@@ -1241,9 +1510,98 @@ function updateSejourLieux() {
 
 saveState(); // persist on first load
 buildTable();
+buildBankingTable();
+// ── Banking ──
+function getBanking() {
+  if (!Array.isArray(notes.banking)) notes.banking = [];
+  return notes.banking;
+}
+
+function saveBanking() {
+  saveState();
+}
+
+function buildBankingTable() {
+  const tbody = document.getElementById("banking-tbody");
+  if (!tbody) return;
+  tbody.innerHTML = "";
+  const banking = getBanking();
+  banking.forEach((entry, i) => renderBankingRow(tbody, entry, i));
+  updateBankingTotal();
+  // restore open state
+}
+
+function renderBankingRow(tbody, entry, i) {
+  const tr = document.createElement("tr");
+
+  const fields = [
+    { key: "jour",    placeholder: "J1",         cls: "" },
+    { key: "label",   placeholder: "ex : restaurant", cls: "" },
+    { key: "compte",  placeholder: "ex : CB, Cash",  cls: "" },
+    { key: "montant", placeholder: "0.00 €",     cls: "right" },
+  ];
+
+  fields.forEach(({ key, placeholder, cls }) => {
+    const td = document.createElement("td");
+    const inp = document.createElement("input");
+    inp.className = "banking-input" + (cls ? " " + cls : "");
+    inp.type = "text";
+    inp.placeholder = placeholder;
+    inp.value = entry[key] || "";
+    inp.addEventListener("input", e => {
+      getBanking()[i][key] = e.target.value;
+      saveBanking();
+      if (key === "montant") updateBankingTotal();
+    });
+    td.appendChild(inp);
+    tr.appendChild(td);
+  });
+
+  // Delete
+  const tdDel = document.createElement("td");
+  tdDel.style.textAlign = "center";
+  const delBtn = document.createElement("button");
+  delBtn.className = "banking-del-btn";
+  delBtn.textContent = "✕";
+  delBtn.addEventListener("click", () => {
+    if (confirm("Supprimer cette dépense ?")) {
+      getBanking().splice(i, 1);
+      saveBanking();
+      buildBankingTable();
+    }
+  });
+  tdDel.appendChild(delBtn);
+  tr.appendChild(tdDel);
+  tbody.appendChild(tr);
+}
+
+function addBankingRow() {
+  getBanking().push({ jour: "", label: "", compte: "", montant: "" });
+  saveBanking();
+  buildBankingTable();
+  // Focus last label input
+  setTimeout(() => {
+    const rows = document.querySelectorAll("#banking-tbody tr");
+    if (rows.length) rows[rows.length - 1].querySelectorAll("input")[1]?.focus();
+  }, 30);
+}
+
+function updateBankingTotal() {
+  const total = getBanking().reduce((sum, e) => {
+    const n = parseFloat((e.montant || "").replace(/[^0-9.,]/g, "").replace(",", "."));
+    return sum + (isNaN(n) ? 0 : n);
+  }, 0);
+  const el = document.getElementById("banking-total");
+  if (el) el.textContent = total.toFixed(2) + " €";
+  updateBudget();
+}
+
+
+
 updateSortHeaders();
 initResize();
 initSejour();
 </script>
+
 </body>
 </html>
